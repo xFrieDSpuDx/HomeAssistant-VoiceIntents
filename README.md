@@ -20,3 +20,5 @@ intent_script:
   !include_dir_merge_named /config/custom_sentences_response/en/
 
 The language folder will depend which language you chose at the start
+
+Ensure you update the entity Ids and other liat items (at the bottom of the non response files) to match your set up. 
