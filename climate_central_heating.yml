@@ -1,0 +1,75 @@
+# Climate control config/custom_sentences/en/climate_central_heating.yaml
+#Known problems:
+#     Setting / changing temperature. Saying "degrees" after the number causes the intent to fail
+#     The same room script affects all climate devices such as Central Heating units as well as the central heating
+language: "en"
+intents:
+  #Central Heating controls
+  #Power
+  TurnOnCentralHeating:
+    data:
+      - sentences:
+          - "(Turn on|start|enable|power up|power on) [the] (heating|radiator|radiators|central heating|boiler|thermostat) [in] [the] {heating_area}"
+          - "(Turn on|start|enable|power up|power on) [the] {heating_area} (heating|radiator|radiators|central heating|boiler|thermostat)"
+  TurnOnCentralHeatingSameArea:
+    data:
+      - sentences:
+          - "(Turn on|start|enable|power up|power on) [the] (heating|radiator|radiators|central heating|boiler|thermostat)"
+        requires_context:
+          area:
+            slot: true
+  TurnOffCentralHeating:
+    data:
+      - sentences:
+          - "(Turn off|stop|disable|power down|power off) [the] (heating|radiator|radiators|central heating|boiler|thermostat) [in] [the] {heating_area}"
+          - "(Turn off|stop|disable|power down|power off) [the] {heating_area} (heating|radiator|radiators|central heating|boiler|thermostat)"
+  TurnOffCentralHeatingSameArea:
+    data:
+      - sentences:
+          - "(Turn off|stop|disable|power down|power off) [the] (heating|radiator|radiators|central heating|boiler|thermostat)"
+        requires_context:
+          area:
+            slot: true
+  #Central Heating set temperature
+  SetCentralHeatingTemperature:
+    data:
+      - sentences:
+          - "(set|change|update) [the] (heating|radiator|radiators|central heating|boiler|thermostat) [(temperature|temp|environment)] [to] {temperature} [in] [the] {heating_area}"
+          - "(set|change|update) [the] (heating|radiator|radiators|central heating|boiler|thermostat)[(temperature|temp|environment)] [in] [the] {heating_area} [to] {temperature}"
+          - "(set|change|update) [the] {heating_area} (heating|radiator|radiators|central heating|boiler|thermostat) [(temperature|temp|environment)] [to] {temperature}"
+          - "heat [the] [room] {heating_area} [to] {temperature}"
+  SetCentralHeatingTemperatureSameArea:
+    data:
+      - sentences:
+          - "(set|change|update) [the] (heating|radiator|radiators|central heating|boiler|thermostat) [(temperature|temp|environment)] [to] {temperature}"
+          - "heat [the] [room] [to] {temperature}"
+        requires_context:
+          area:
+            slot: true
+lists:
+  heating_area:
+    values:
+      - in: "(dining room)"
+        out: "climate.*entity_id*"
+      - in: "(hall|entrance|corridor|hall corridor)"
+        out: "climate.*entity_id*"
+      - in: "(kitchen)"
+        out: "climate.*entity_id*"
+      - in: "(landing|stairs|upstairs)"
+        out: "climate.*entity_id*"
+      - in: "(living room|front room|family room)"
+        out: "climate.*entity_id*"
+      - in: "(master bedroom|bedroom|main bedroom)"
+        out: "climate.*entity_id*"
+      - in: "(snug|games room)"
+        out: "climate.snug"
+      - in: "(spare bedroom|guest room| spare room)"
+        out: "climate.*entity_id*"
+      - in: "(study|office)"
+        out: "climate.*entity_id*"
+      - in: "(utility room|wash room)"
+        out: "climate.*entity_id*"
+  temperature:
+    range:
+      from: 5
+      to: 30

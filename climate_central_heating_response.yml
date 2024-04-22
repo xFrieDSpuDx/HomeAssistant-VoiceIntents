@@ -1,0 +1,53 @@
+#Resonse to climate_central_heating.yaml config/custom_sentences_response/climate_central_heating_response.yaml
+
+#Central heating status
+TurnOnCentralHeating:
+  speech:
+    text: "Turning on the {{state_attr(heating_area, 'friendly_name')}}."
+  action:
+    - service: climate.turn_on
+      data:
+        entity_id: "{{heating_area}}"
+
+TurnOnCentralHeatingSameArea:
+  speech:
+    text: "Turning on climate control."
+  action:
+    - service: climate.turn_on
+      data:
+        area_id: "{{area}}"
+
+TurnOffCentralHeating:
+  speech:
+    text: "Turning off the {{state_attr(heating_area, 'friendly_name')}}."
+  action:
+    - service: climate.turn_off
+      data:
+        entity_id: "{{heating_area}}"
+
+TurnOffCentralHeatingSameArea:
+  speech:
+    text: "Turning off climate control."
+  action:
+    - service: climate.turn_off
+      data:
+        area_id: "{{area}}"
+
+#Set Temperature
+SetCentralHeatingTemperature:
+  speech:
+    text: "OK, Setting {{state_attr(heating_area, 'friendly_name')}} to {{temperature}} degrees."
+  action:
+    - service: climate.set_temperature
+      data:
+        entity_id: "{{heating_area}}"
+        temperature: "{{temperature}}"
+
+SetCentralHeatingTemperatureSameArea:
+  speech:
+    text: "OK, Setting temperature to {{temperature}} degrees."
+  action:
+    - service: climate.set_temperature
+      data:
+        area_id: "{{area}}"
+        temperature: "{{temperature}}"

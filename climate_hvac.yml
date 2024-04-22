@@ -1,0 +1,101 @@
+# Climate control config/custom_sentences/en/climate_hvac.yaml
+#Known problems: 
+#     Setting / changing temperature. Saying "degrees" after the number causes the intent to fail
+#     The same room script affects all climate devices such as radiators as well as the hvac
+language: "en"
+intents:
+#HVAC controls
+#Power
+  TurnOnHvac:
+    data:
+      - sentences:
+          - "(Turn on|start|enable|power up|power on) [the] (AC|Air Con|climate control|Air Conditioning|Air|Hot Air|Cold Air) [in] [the] {hvac}"
+          - "(Turn on|start|enable|power up|power on) [the] {hvac} (AC|Air Con|climate control|Air Conditioning|Air|Hot Air|Cold Air)"
+  TurnOnHvacSameArea:
+    data:
+      - sentences:
+          - "(Turn on|start|enable|power up|power on) [the] (AC|Air Con|climate control|Air Conditioning|Air|Hot Air|Cold Air)"
+        requires_context:
+          area:
+            slot: true
+  TurnOffHvac:
+    data:
+      - sentences:
+          - "(Turn off|stop|disable|power down|power off) [the] (AC|Air Con|climate control|Air Conditioning|Air|Hot Air|Cold Air) [in] [the] {hvac}"
+          - "(Turn off|stop|disable|power down|power off) [the] {hvac} (AC|Air Con|climate control|Air Conditioning|Air|Hot Air|Cold Air)"
+  TurnOffHvacSameArea:
+    data:
+      - sentences:
+          - "(Turn off|stop|disable|power down|power off) [the] (AC|Air Con|climate control|Air Conditioning|Air|Hot Air|Cold Air)"
+        requires_context:
+          area:
+            slot: true
+#HVAC Mode. E.g. heat, cool
+  SetHvacMode:
+    data:
+      - sentences:
+          - "(set|change|update|enable) [the] (AC|Air Con|climate control|Air Conditioning|Air|Hot Air|Cold Air) [mode] [to] {hvac_mode} [in] [the] {hvac}"
+          - "(set|change|update|enable) [the] {hvac} (AC|Air Con|climate control|Air Conditioning|Air|Hot Air|Cold Air) [mode] [to] {hvac_mode}"
+  SetHvacModeSameArea:
+    data:
+      - sentences:
+          - "(set|change|update|enable) [the] (AC|Air Con|climate control|Air Conditioning|Air|Hot Air|Cold Air) [mode] [to] {hvac_mode}"
+          - "(set|change|update|enable) {hvac_mode} [mode]"
+        requires_context:
+          area:
+            slot: true
+#HVAC set temperature
+  SetHvacTemperature:
+    data:
+      - sentences:
+          - "(set|change|update) [the] (temperature|temp|environment) [to] {temperature} [in] [the] {hvac}"
+          - "(set|change|update) [the] (temperature|temp|environment) [in] [the] {hvac} [to] {temperature}"
+          - "(set|change|update) [the] {hvac} (temperature|temp|environment) [to] {temperature}"
+          - "(set|change|update) [the] (AC|Air Con|climate control|Air Conditioning|Air|Hot Air|Cold Air) [(temperature|temp|environment)] [to] {temperature} [in] [the] {hvac}"
+          - "(set|change|update) [the] (AC|Air Con|climate control|Air Conditioning|Air|Hot Air|Cold Air)[(temperature|temp|environment)] [in] [the] {hvac} [to] {temperature}"
+          - "(set|change|update) [the] {hvac} (AC|Air Con|climate control|Air Conditioning|Air|Hot Air|Cold Air) [(temperature|temp|environment)] [to] {temperature}"
+  SetHvacTemperatureSameArea:
+    data:
+      - sentences:
+          - "(set|change|update) [the] (temperature|temp|environment) [to] {temperature}"
+          - "(set|change|update) [the] (AC|Air Con|climate control|Air Conditioning|Air|Hot Air|Cold Air) [(temperature|temp|environment)] [to] {temperature}"
+        requires_context:
+          area:
+            slot: true
+#HVAC easy warming
+  SetHvacWarming:
+    data:
+      - sentences:
+          - "(I am|I'm|it's|it is) [(to|too)] (cold|chilly|chilli|freezing) [today] [(in here|in this room|in the room)]"
+        requires_context:
+          area:
+            slot: true
+#HVAC easy cooling
+  SetHvacCooling:
+    data:
+      - sentences:
+          - "(I am|I'm|it's|it is) [(to|too)] (warm|hot|baking|sweating) [today] [(in here|in this room|in the room)]"
+        requires_context:
+          area:
+            slot: true
+lists:
+  hvac:
+    values:
+      - in: "(study|office)"
+        out: "climate.*entity_id*"
+      - in: "(snug|games room)"
+        out: "climate.*entity_id*"
+      - in: "(bedroom|master bedroom)"
+        out: "climate.*entity_id*"
+  hvac_mode:
+    values:
+      - in: "(cool|chill|cold|AC|Air Con|climate control|air conditioning|cold air)"
+        out: "cool"
+      - in: "(heat|warm|hot|hot air)"
+        out: "heat"
+      - in: "(auto|automatic)"
+        out: "heat_cool"
+  temperature:
+    range:
+      from: 18
+      to: 30
