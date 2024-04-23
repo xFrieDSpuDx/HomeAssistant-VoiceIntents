@@ -4,58 +4,58 @@ intents:
   MusicAssistantArtist:
     data:
       - sentences:
-          - "Play (music|songs|tracks) (by|from) [the] {media_artist} (on|in) [the] {media_player}"
+          - "(Play|played) (music|songs|tracks) (by|from) [the] {media_artist} (on|in) [the] {media_player}"
   MusicAssistantArtistSameArea:
     data:
       - sentences:
-          - "Play (music|songs|tracks) (by|from) [the] {media_artist}"
+          - "(Play|played) (music|songs|tracks) (by|from) [the] {media_artist}"
         requires_context:
           area:
             slot: true
   MusicAssistantArtistRadio:
     data:
       - sentences:
-          - "(Play|create|make|build) [(a|an)] (music|playlist|artist radio|artist radio station|radio station|track list|mix) (by|from|using|inspired by|influenced by|based on) [the] {media_artist} (on|in) [the] {media_player}"
+          - "(Play|played|create|make|build) [(a|an)] (music|playlist|artist radio|artist radio station|radio station|track list|mix) (from|using|inspired by|influenced by|based on) [the] {media_artist} (on|in) [the] {media_player}"
   MusicAssistantArtistRadioSameArea:
     data:
       - sentences:
-          - "(Play|create|make|build) [(a|an)] (music|playlist|artist radio|artist radio station|radio station|track list|mix) (by|from|using|inspired by|influenced by|based on) [the] {media_artist}"
+          - "(Play|played|create|make|build) [(a|an)] (music|playlist|artist radio|artist radio station|radio station|track list|mix) (from|using|inspired by|influenced by|based on) [the] {media_artist}"
         requires_context:
           area:
             slot: true
   MusicAssistantAlbum:
     data:
       - sentences:
-          - "Play [the] album {media_album} (on|in) [the] {media_player}"
+          - "(Play|played) [the] album {media_album} (on|in) [the] {media_player}"
   MusicAssistantAlbumSameArea:
     data:
       - sentences:
-          - "Play [the] album {media_album}"
+          - "(Play|played) [the] album {media_album}"
         requires_context:
           area:
             slot: true
   MusicAssistantAlbumArtist:
     data:
       - sentences:
-          - "Play [the] album {media_album} by [the] {media_artist} (on|in) [the] {media_player}"
+          - "(Play|played) [the] album {media_album} by [the] {media_artist} (on|in) [the] {media_player}"
   MusicAssistantAlbumArtistSameArea:
     data:
       - sentences:
-          - "Play [the] album {media_album} by [the] {media_artist}"
+          - "(Play|played) [the] album {media_album} by [the] {media_artist}"
         requires_context:
           area:
             slot: true
   MusicAssistantRadio:
     data:
       - sentences:
-          - "(Play|Turn on) [the] radio [to] [station] {media_radio} (on|in) [the] {media_player}"
-          - "(Play|Turn on) {media_radio} radio (on|in) [the] {media_player}"
+          - "(Play|played|Turn on) [the] radio [to] [station] {media_radio} (on|in) [the] {media_player}"
+          - "(Play|played|Turn on) {media_radio} radio (on|in) [the] {media_player}"
           - "(Tune into) {media_radio} (on|in) [the] {media_player}"
   MusicAssistantRadioSameArea:
     data:
       - sentences:
-          - "(Play|Turn on) [the] radio [to] [station] {media_radio}"
-          - "(Play|Turn on) {media_radio} radio"
+          - "(Play|played|Turn on) [the] radio [to] [station] {media_radio}"
+          - "(Play|played|Turn on) {media_radio} radio"
           - "(Tune into) {media_radio}"
         requires_context:
           area:
@@ -63,13 +63,13 @@ intents:
   SetVolume:
     data:
       - sentences:
-          - "(set|change) [the] {media_player} [volume] to {volume} [%|percent]"
-          - "(set|change) [the] volume for [the] {media_player} to {volume} [%|percent]"
-          - "(set|change) [the] volume [to] {volume} [%|percent] [in] [for] [the] {media_player} "
+          - "[(set|change)] [the] {media_player} [volume] to {volume} [%|percent]"
+          - "[(set|change)] [the] volume for [the] {media_player} to {volume} [%|percent]"
+          - "[(set|change)] [the] volume [to] {volume} [%|percent] [in] [for] [the] {media_player} "
   SetVolumeSameArea:
     data:
       - sentences:
-          - "(set|change) [the] volume to {volume} [%|percent]"
+          - "[(set|change)] [the] volume to {volume} [%|percent]"
         requires_context:
           area:
             slot: true
@@ -168,33 +168,33 @@ intents:
   PlayMedia:
     data:
       - sentences:
-          - "(Play|resume) [the] (radio|music|audio|song|songs|playlist|file|playback) (on|in) [the] {media_player}"
+          - "(Play|played|resume|Turn on) [the] (radio|music|audio|song|songs|playlist|file|playback) (on|in) [the] {media_player}"
   PlayMediaSameArea:
     data:
       - sentences:
-          - "(Play|resume) [the] (radio|music|audio|song|songs|playlist|file|playback)"
+          - "(Play|played|resume|Turn on) [the] (radio|music|audio|song|songs|playlist|file|playback)"
         requires_context:
           area:
             slot: true
   NextTrack:
     data:
       - sentences:
-          - "[Play] [the] (next|skip) (track|song|songs|file) (on|in) [the] {media_player}"
+          - "[(Play|played)] [the] (next|skip) (track|song|songs|file) (on|in) [the] {media_player}"
   NextTrackSameArea:
     data:
       - sentences:
-          - "[Play] [the] (next|skip) (track|song|songs|file|files|audio|audio file)"
+          - "[(Play|played)] [the] (next|skip) (track|song|songs|file|files|audio|audio file)"
         requires_context:
           area:
             slot: true
   PreviousTrack:
     data:
       - sentences:
-          - "[Play] [the] (previous|last) (track|song|songs|file|files|audio|audio file) (on|in) [the] {media_player}"
+          - "[(Play|played)] [the] (previous|last) (track|song|songs|file|files|audio|audio file) (on|in) [the] {media_player}"
   PreviousTrackSameArea:
     data:
       - sentences:
-          - "[Play] [the] (previous|last) (track|song|songs|file|files|audio|audio file)"
+          - "[(Play|played)] [the] (previous|last) (track|song|songs|file|files|audio|audio file)"
         requires_context:
           area:
             slot: true
